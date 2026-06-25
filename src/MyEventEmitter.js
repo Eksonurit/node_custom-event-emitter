@@ -20,6 +20,9 @@ class MyEventEmitter {
     this.on(eventName, wrapper);
   }
   off(eventName, callBack) {
+    if (!this._events[eventName]) {
+      return;
+    }
     this._events[eventName] = this._events[eventName].filter((fn) => {
       return fn !== callBack;
     });
